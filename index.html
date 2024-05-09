@@ -1,6 +1,53 @@
-<html>
-  <head><title>title here</title></head>
-  <body>
-    content
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        label, .value-display {
+            display: block;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Local Storage Example</h1>
+    <div>
+        <label for="inputValue">Enter Value:</label>
+        <input type="text" id="inputValue" oninput="updateLocalStorage()" />
+    </div>
+    <div class="value-display">
+        <strong>Stored Value: </strong><span id="displayValue">undefined</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to display the value from local storage when the page loads
+            function displayValue() {
+                var storedValue = localStorage.getItem('myValue');
+                document.getElementById('displayValue').textContent = storedValue || 'undefined';
+            }
+
+            // Call the display function on page load
+            displayValue();
+        });
+
+        // Function to update local storage and the display
+        function updateLocalStorage() {
+            var inputValue = document.getElementById('inputValue').value;
+            localStorage.setItem('myValue', inputValue);
+            document.getElementById('displayValue').textContent = inputValue;
+        }
+    </script>
+</body>
 </html>
